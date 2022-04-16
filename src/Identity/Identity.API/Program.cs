@@ -1,5 +1,6 @@
 using Identity.Application.Services;
 using Identity.Application.Services.Implementation;
+using Identity.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddInfrastructure(builder.Configuration["Database:ConnectionString"]);
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddHealthChecks();
 
