@@ -11,6 +11,12 @@ namespace Identity.Infrastructure
         {
         }
 
+        public void Migrate()
+        {
+            Console.WriteLine("Migrating...");
+            Database.Migrate();
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

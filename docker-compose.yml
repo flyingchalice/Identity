@@ -1,0 +1,22 @@
+version: '3'
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "P455w0rd"
+      MSSQL_PID: Express
+    ports:
+     - "1433:1433"
+  identity:
+    build: .
+    environment:
+      DBServer: "database"
+      DBPort: "1433"
+      DBUser: "sa"
+      DBPassword: "P455w0rd"
+      DBName: "identity"
+    ports:
+     - "8080:80"
+    depends_on:
+     - database
